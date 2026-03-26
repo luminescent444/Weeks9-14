@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class HpBarAndGrass : MonoBehaviour
@@ -18,6 +19,11 @@ public class HpBarAndGrass : MonoBehaviour
     public SpriteRenderer grassSR;
     public SpriteRenderer playerSR;
     public Slider HPBar;
+    public float playerX;
+
+    //events
+    public UnityEvent loss;
+    public UnityEvent win;
 
     //timer variables
     public float timerCount;
@@ -26,19 +32,15 @@ public class HpBarAndGrass : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            spawn = new Vector3 (Random.Range(-8.5f, 9), Random.Range(-2.5f, 2.5f));
-            grassObjs.Add(Instantiate(grass, spawn, transform.rotation));
-            playerSR=player.GetComponent<SpriteRenderer>();
-        }
-        HPBar.value = HP;
-        HPBar.maxValue = HP;
+        startGame();
     }
 
     // Update is called once per frame
     void Update()
     {
+        HPBar.value = HP;
+        playerX = player.transform.position.x;
+
         if (poison==true)
         {
             HP = HP - 1;
@@ -53,7 +55,17 @@ public class HpBarAndGrass : MonoBehaviour
                 poison = true;
             }
         }
-        HPBar.value = HP;
+       
+        //wins/losses
+        if (HP < 0)
+        {
+            loss.Invoke();
+        }
+
+        if (playerX > 9)
+        {
+            win.Invoke();
+        }
     }
 
     public void grassAte()
@@ -67,6 +79,18 @@ public class HpBarAndGrass : MonoBehaviour
             }
         }
         
+    }
+
+    public void startGame()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            spawn = new Vector3(Random.Range(-8.5f, 9), Random.Range(-2.5f, 2.5f));
+            grassObjs.Add(Instantiate(grass, spawn, transform.rotation));
+            playerSR = player.GetComponent<SpriteRenderer>();
+        }
+        HPBar.value = 1000;
+        HPBar.maxValue = 1000;
     }
 
 }
