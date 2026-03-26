@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class SystemProgressFunctions : MonoBehaviour
 {
 
-    public float speed = 5;
+    public float speed = 2;
     public Vector2 movement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

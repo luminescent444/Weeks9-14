@@ -15,9 +15,8 @@ public class HpBarAndGrass : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            spawn = new Vector3 (Random.Range(-3, 3), Random.Range(-8, 8));
-            //grassObjs[i]=Instantiate(grass);
-            grassObjs.Add(Instantiate(grass,transform.position));
+            spawn = new Vector3 (Random.Range(-8.5f, 9), Random.Range(-2.5f, 2.5f));
+            grassObjs.Add(Instantiate(grass, spawn, transform.rotation));
             
         }
     }
