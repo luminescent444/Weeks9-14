@@ -73,6 +73,7 @@ public class SystemProgressFunctions : MonoBehaviour
     public void milestoneHit()
     {
         StartCoroutine(milestone());
+        Debug.Log("milestone func");
     }
 
     IEnumerator milestone()
