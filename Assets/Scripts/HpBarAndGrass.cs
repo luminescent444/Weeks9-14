@@ -11,9 +11,9 @@ public class HpBarAndGrass : MonoBehaviour
 
     public List<GameObject> grassObjs;
     public GameObject grass;
-    public GameObject player; 
+    public GameObject player;
     public Vector3 spawn;
-    public float HP = 1500 ;
+    public float HP = 1500;
     public bool poison = true;
     public bool ateGrass = false;
     public SpriteRenderer grassSR;
@@ -21,18 +21,37 @@ public class HpBarAndGrass : MonoBehaviour
     public Slider HPBar;
     public float playerX;
 
+    //bars
+    public SpriteRenderer line1;
+    public SpriteRenderer line2;
+    public SpriteRenderer line3;
+    public GameObject line1g;
+    public GameObject line2g;
+    public GameObject line3g;
+
     //events
     public UnityEvent loss;
     public UnityEvent win;
+    public UnityEvent milestone;
 
     //timer variables
     public float timerCount;
     public float timerLength = 3;
+    public bool line1Hpappened = false;
+    public bool line2Hpappened = false;
+    public bool line3Hpappened = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        startGame();
+        for (int i = 0; i < 10; i++)
+        {
+            spawn = new Vector3(Random.Range(-8.5f, 9), Random.Range(-2.5f, 2.5f));
+            grassObjs.Add(Instantiate(grass, spawn, transform.rotation));
+            playerSR = player.GetComponent<SpriteRenderer>();
+        }
+        HP = 1500;
+        HPBar.maxValue = 1500;
     }
 
     // Update is called once per frame
@@ -41,7 +60,7 @@ public class HpBarAndGrass : MonoBehaviour
         HPBar.value = HP;
         playerX = player.transform.position.x;
 
-        if (poison==true)
+        if (poison == true)
         {
             HP = HP - 1;
         }
@@ -55,7 +74,7 @@ public class HpBarAndGrass : MonoBehaviour
                 poison = true;
             }
         }
-       
+
         //wins/losses
         if (HP < 0)
         {
@@ -66,6 +85,29 @@ public class HpBarAndGrass : MonoBehaviour
         {
             win.Invoke();
         }
+
+        //milestone events
+        if (line1.bounds.Intersects(playerSR.bounds)&&line1Hpappened==false)
+        {
+            line1g.SetActive(false);
+            milestone.Invoke();
+            line1Hpappened = true;
+        }
+
+        if (line2.bounds.Intersects(playerSR.bounds) && line2Hpappened == false)
+        {
+            line2g.SetActive(false);
+            milestone.Invoke();
+            line2Hpappened = true;
+        }
+
+        if (line3.bounds.Intersects(playerSR.bounds) && line3Hpappened == false)
+        {
+            line3g.SetActive(false);
+            milestone.Invoke();
+            line3Hpappened = true;
+        }
+
     }
 
     public void grassAte()
@@ -85,12 +127,16 @@ public class HpBarAndGrass : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
+            Destroy(grassObjs[i]);
+            grassObjs.Remove(grassObjs[i]);
             spawn = new Vector3(Random.Range(-8.5f, 9), Random.Range(-2.5f, 2.5f));
             grassObjs.Add(Instantiate(grass, spawn, transform.rotation));
             playerSR = player.GetComponent<SpriteRenderer>();
         }
-        HPBar.value = 1000;
-        HPBar.maxValue = 1000;
+        HP = 1500;
+        HPBar.maxValue = 1500;
+
+        Debug.Log("reset");
     }
 
 }

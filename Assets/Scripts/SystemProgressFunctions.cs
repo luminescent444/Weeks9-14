@@ -1,13 +1,28 @@
+using System.Collections;
+using System.Diagnostics.Contracts;
+using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class SystemProgressFunctions : MonoBehaviour
 {
-
+    public TextMeshProUGUI winT;
+    public TextMeshProUGUI lossT;
     public float speed = 2;
     public Vector2 movement;
     public Vector3 spawn = new Vector3(-8.5f, 0, 0);
+    public GameObject go;
+    public Vector3 playerpos;
+    public float jumpy;
+    public float savedJumpy;
+
+
+      
+    //milestone timer
+    public float timerCount = 0;
+    public float timerLength = 2f;
 
     //trackers
     public float wins = 0;
@@ -20,6 +35,7 @@ public class SystemProgressFunctions : MonoBehaviour
     void Start()
     {
         transform.position = spawn;
+        go.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,6 +56,7 @@ public class SystemProgressFunctions : MonoBehaviour
         transform.position = spawn;
         losses = losses +1;
         resetGame.Invoke();
+        lossT.text = (losses.ToString());
     }
 
     public void playerWon()
@@ -47,6 +64,30 @@ public class SystemProgressFunctions : MonoBehaviour
         transform.position = spawn;
         wins = wins + 1;
         resetGame.Invoke();
+        winT.text = (wins.ToString());
+    }
+
+    public void milestoneHit()
+    {
+        StartCoroutine(milestone());
+    }
+    IEnumerator milestone()
+    {
+        Debug.Log("milestone");
+        go.SetActive(true);
+
+        while (timerCount < timerLength)
+        {
+            timerCount = timerCount + Time.deltaTime;
+            yield return null;
+        }
+        if(timerCount > timerLength)
+        {
+            go.SetActive(false);
+            timerCount = 0;
+            
+        }
+        
     }
 
 }
