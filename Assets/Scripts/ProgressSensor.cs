@@ -58,6 +58,10 @@ public class ProgressSensor : MonoBehaviour
         line1Hpappened = false;
         line2Hpappened = false;
         line3Hpappened = false;
+        line1g.SetActive(true);
+        line2g.SetActive(true);
+        line3g.SetActive(true);
+
     }
 
 }

@@ -159,6 +159,7 @@ MonoBehaviour:
   playerSR: {fileID: 0}
   HPBar: {fileID: 131680288}
   playerX: 0
+  sensor: {fileID: 385601258}
   loss:
     m_PersistentCalls:
       m_Calls:

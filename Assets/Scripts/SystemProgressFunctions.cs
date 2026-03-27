@@ -43,6 +43,7 @@ public class SystemProgressFunctions : MonoBehaviour
     {
 
         transform.position += (Vector3)movement * speed * Time.deltaTime;
+        playerpos = transform.position;
     
     }
 
@@ -75,6 +76,8 @@ public class SystemProgressFunctions : MonoBehaviour
     public void jumpTrigger()
     {
         StartCoroutine(jump());
+        savedJumpy= playerpos.y;
+        jumpy= playerpos.y+0.01f;
     }
 
     IEnumerator milestone()
@@ -97,17 +100,18 @@ public class SystemProgressFunctions : MonoBehaviour
     }
     IEnumerator jump()
     {
-        playerpos.y = savedJumpy;
-        playerpos.y = jumpy;
-        while (jumpy > savedJumpy - 1)
+        
+        while (jumpy > savedJumpy - 0.01f)
         {
-            if (jumpy < savedJumpy + 7)
+            if (jumpy < savedJumpy + 1)
             {
-                jumpy = jumpy + 1;
+                jumpy = jumpy + 0.1f;
+             
             }
             else
             {
-                jumpy = jumpy - 1;
+                jumpy = jumpy - 0.1f;
+                
             }
             
             yield return null;
