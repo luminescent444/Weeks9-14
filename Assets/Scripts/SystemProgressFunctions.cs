@@ -71,6 +71,12 @@ public class SystemProgressFunctions : MonoBehaviour
     {
         StartCoroutine(milestone());
     }
+
+    public void jumpTrigger()
+    {
+        StartCoroutine(jump());
+    }
+
     IEnumerator milestone()
     {
         Debug.Log("milestone");
@@ -88,6 +94,25 @@ public class SystemProgressFunctions : MonoBehaviour
             
         }
         
+    }
+    IEnumerator jump()
+    {
+        playerpos.y = savedJumpy;
+        playerpos.y = jumpy;
+        while (jumpy > savedJumpy - 1)
+        {
+            if (jumpy < savedJumpy + 7)
+            {
+                jumpy = jumpy + 1;
+            }
+            else
+            {
+                jumpy = jumpy - 1;
+            }
+            
+            yield return null;
+        }
+               
     }
 
 }

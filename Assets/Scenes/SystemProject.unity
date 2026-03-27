@@ -159,12 +159,6 @@ MonoBehaviour:
   playerSR: {fileID: 0}
   HPBar: {fileID: 131680288}
   playerX: 0
-  line1: {fileID: 1762635547}
-  line2: {fileID: 324121924}
-  line3: {fileID: 811170031}
-  line1g: {fileID: 1762635546}
-  line2g: {fileID: 324121923}
-  line3g: {fileID: 811170030}
   loss:
     m_PersistentCalls:
       m_Calls:
@@ -195,26 +189,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  milestone:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 385601257}
-        m_TargetAssemblyTypeName: SystemProgressFunctions, Assembly-CSharp
-        m_MethodName: milestoneHit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   timerCount: 0
   timerLength: 3
-  line1Hpappened: 0
-  line2Hpappened: 0
-  line3Hpappened: 0
 --- !u!4 &34392702
 Transform:
   m_ObjectHideFlags: 0
@@ -497,6 +473,7 @@ GameObject:
   - component: {fileID: 385601256}
   - component: {fileID: 385601255}
   - component: {fileID: 385601254}
+  - component: {fileID: 385601258}
   - component: {fileID: 385601257}
   - component: {fileID: 385601253}
   m_Layer: 0
@@ -754,11 +731,7 @@ MonoBehaviour:
   jumpy: 0
   savedJumpy: 0
   timerCount: 0
-  timerCount2: 0
-  timerCount3: 0
   timerLength: 1
-  timerLength2: 0
-  timerLength3: 0
   wins: 0
   losses: 0
   resetGame:
@@ -776,6 +749,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &385601258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385601252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9b7f8045f5fb143af0d5f0357706eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressSensor
+  line1Hpappened: 0
+  line2Hpappened: 0
+  line3Hpappened: 0
+  line1: {fileID: 1762635547}
+  line2: {fileID: 324121924}
+  line3: {fileID: 811170031}
+  line1g: {fileID: 1762635546}
+  line2g: {fileID: 324121923}
+  line3g: {fileID: 811170030}
+  milestone:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 385601257}
+        m_TargetAssemblyTypeName: SystemProgressFunctions, Assembly-CSharp
+        m_MethodName: jumpTrigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerSR: {fileID: 385601255}
 --- !u!1 &494425140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2590,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125610540}
   m_CullTransparentMesh: 1
+--- !u!1 &2135043269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2135043271}
+  - component: {fileID: 2135043270}
+  m_Layer: 0
+  m_Name: go go tracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2135043270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135043269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9b7f8045f5fb143af0d5f0357706eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressSensor
+  line1Hpappened: 0
+  line2Hpappened: 0
+  line3Hpappened: 0
+  line1: {fileID: 1762635547}
+  line2: {fileID: 324121924}
+  line3: {fileID: 811170031}
+  line1g: {fileID: 1762635546}
+  line2g: {fileID: 324121923}
+  line3g: {fileID: 811170030}
+  milestone:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 385601257}
+        m_TargetAssemblyTypeName: SystemProgressFunctions, Assembly-CSharp
+        m_MethodName: milestoneHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerSR: {fileID: 385601255}
+--- !u!4 &2135043271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135043269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.19686, y: -2.25953, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2596,3 +2675,4 @@ SceneRoots:
   - {fileID: 1762635548}
   - {fileID: 324121925}
   - {fileID: 811170032}
+  - {fileID: 2135043271}
