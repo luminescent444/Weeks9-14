@@ -13,7 +13,7 @@ public class HpBarAndGrass : MonoBehaviour
     public GameObject grass;
     public GameObject player;
     public Vector3 spawn;
-    public float HP = 1500;
+    public float HP = 5;
     public bool poison = true;
     public bool ateGrass = false;
     public SpriteRenderer grassSR;
@@ -42,8 +42,8 @@ public class HpBarAndGrass : MonoBehaviour
             grassObjs.Add(Instantiate(grass, spawn, transform.rotation));
             playerSR = player.GetComponent<SpriteRenderer>();
         }
-        HP = 1500;
-        HPBar.maxValue = 1500;
+        HP = 5;
+        HPBar.maxValue = 5;
     }
 
     // Update is called once per frame
@@ -54,7 +54,7 @@ public class HpBarAndGrass : MonoBehaviour
 
         if (poison == true)
         {
-            HP = HP - 1;
+            HP = HP - 1*Time.deltaTime;
         }
 
         if (poison == false)
@@ -105,8 +105,8 @@ public class HpBarAndGrass : MonoBehaviour
             grassObjs.Add(Instantiate(grass, spawn, transform.rotation));
             playerSR = player.GetComponent<SpriteRenderer>();
         }
-        HP = 1500;
-        HPBar.maxValue = 1500;
+        HP = 5;
+        HPBar.maxValue = 5;
         sensor.resetBools();
 
         Debug.Log("reset");

@@ -17,6 +17,8 @@ public class SystemProgressFunctions : MonoBehaviour
     public Vector3 playerpos;
     public float jumpy;
     public float savedJumpy;
+    public bool goingUp = false;
+    public bool goingDown = false;  
 
 
       
@@ -44,7 +46,7 @@ public class SystemProgressFunctions : MonoBehaviour
 
         transform.position += (Vector3)movement * speed * Time.deltaTime;
         playerpos = transform.position;
-    
+            
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -73,13 +75,6 @@ public class SystemProgressFunctions : MonoBehaviour
         StartCoroutine(milestone());
     }
 
-    public void jumpTrigger()
-    {
-        StartCoroutine(jump());
-        savedJumpy= playerpos.y;
-        jumpy= playerpos.y+0.01f;
-    }
-
     IEnumerator milestone()
     {
         Debug.Log("milestone");
@@ -98,25 +93,38 @@ public class SystemProgressFunctions : MonoBehaviour
         }
         
     }
+    public void jumpTrigger()
+    {
+        StartCoroutine(jump());
+        savedJumpy= playerpos.y;
+        jumpy= playerpos.y+0.01f;
+    }
     IEnumerator jump()
     {
-        
+        goingUp = true;
         while (jumpy > savedJumpy - 0.01f)
         {
-            if (jumpy < savedJumpy + 1)
+            if (jumpy < savedJumpy + 1 && goingUp)
             {
                 jumpy = jumpy + 0.1f;
              
             }
             else
             {
+                goingUp = false;
+            }
+
+            if (goingUp==false)
+            {
+
                 jumpy = jumpy - 0.1f;
                 
             }
-            
+            transform.position = new Vector3 (transform.position.x,jumpy,0);
             yield return null;
         }
-               
+        jumpy = savedJumpy;
+        transform.position = new Vector3(transform.position.x, jumpy, 0);
     }
 
 }

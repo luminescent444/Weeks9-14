@@ -36,6 +36,7 @@ public class ProgressSensor : MonoBehaviour
             line1g.SetActive(false);
             milestone.Invoke();
             line1Hpappened = true;
+            Debug.Log("line 1 hit");
         }
 
         if (line2.bounds.Intersects(playerSR.bounds) && line2Hpappened == false)
@@ -55,6 +56,7 @@ public class ProgressSensor : MonoBehaviour
 
     public void resetBools()
     {
+        Debug.Log("lines reset");
         line1Hpappened = false;
         line2Hpappened = false;
         line3Hpappened = false;
