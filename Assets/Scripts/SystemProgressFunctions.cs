@@ -18,9 +18,9 @@ public class SystemProgressFunctions : MonoBehaviour
     public float jumpy;
     public float savedJumpy;
     public bool goingUp = false;
-    public bool goingDown = false;  
+    public bool goingDown = false;
 
-
+    public float playerBounds;
       
     //milestone timer
     public float timerCount = 0;
@@ -43,6 +43,30 @@ public class SystemProgressFunctions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(transform.position.y <= -3)
+        {
+
+            playerBounds = transform.position.y;
+            playerBounds = playerBounds + 0.1f;
+            transform.position = new Vector3 (transform.position.x, playerBounds);
+        }
+
+        if (transform.position.y >= 3)
+        {
+
+            playerBounds = transform.position.y;
+            playerBounds = playerBounds - 0.1f;
+            transform.position = new Vector3(transform.position.x, playerBounds);
+        }
+
+        if (transform.position.x <= -9)
+        {
+
+            playerBounds = transform.position.x;
+            playerBounds = playerBounds + 0.1f;
+            transform.position = new Vector3(playerBounds, transform.position.y);
+        }
 
         transform.position += (Vector3)movement * speed * Time.deltaTime;
         playerpos = transform.position;
