@@ -21,6 +21,8 @@ public class SystemProgressFunctions : MonoBehaviour
     public bool goingDown = false;
 
     public float playerBounds;
+
+    public HpBarAndGrass HP;
       
     //milestone timer
     public float timerCount = 0;
@@ -82,7 +84,7 @@ public class SystemProgressFunctions : MonoBehaviour
     {
         transform.position = spawn;
         losses = losses +1;
-        resetGame.Invoke();
+        HP.startGame();
         lossT.text = (losses.ToString());
     }
 
@@ -90,14 +92,15 @@ public class SystemProgressFunctions : MonoBehaviour
     {
         transform.position = spawn;
         wins = wins + 1;
-        resetGame.Invoke();
+        HP.startGame();
         winT.text = (wins.ToString());
     }
 
     public void milestoneHit()
     {
-        StartCoroutine(milestone());
         Debug.Log("milestone func");
+        StartCoroutine(milestone());
+        
     }
 
     IEnumerator milestone()

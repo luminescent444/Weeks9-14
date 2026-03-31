@@ -1,3 +1,4 @@
+using Unity.XR.OpenVR;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,6 +21,11 @@ public class ProgressSensor : MonoBehaviour
 
     public SpriteRenderer playerSR;
 
+    public string whoami;
+
+    public ProgressSensor lineTracker;
+    public ProgressSensor jumpTracker;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,10 +40,10 @@ public class ProgressSensor : MonoBehaviour
         if (line1.bounds.Intersects(playerSR.bounds) && line1Hpappened == false)
         {
             line1g.SetActive(false);
+            Debug.Log("line 1 hit");
             milestone.Invoke();
             line1Hpappened = true;
-            Debug.Log("line 1 hit");
-        }
+                    }
 
         if (line2.bounds.Intersects(playerSR.bounds) && line2Hpappened == false)
         {
@@ -57,9 +63,12 @@ public class ProgressSensor : MonoBehaviour
     public void resetBools()
     {
         Debug.Log("lines reset");
-        line1Hpappened = false;
-        line2Hpappened = false;
-        line3Hpappened = false;
+        jumpTracker.line1Hpappened = false;
+        jumpTracker.line2Hpappened = false;
+        jumpTracker.line3Hpappened = false;
+        lineTracker.line1Hpappened = false;
+        lineTracker.line2Hpappened = false;
+        lineTracker.line3Hpappened = false;
         line1g.SetActive(true);
         line2g.SetActive(true);
         line3g.SetActive(true);

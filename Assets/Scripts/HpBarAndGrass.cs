@@ -27,6 +27,8 @@ public class HpBarAndGrass : MonoBehaviour
     public UnityEvent loss;
     public UnityEvent win;
 
+    public SystemProgressFunctions functions;
+
 
     //timer variables
     public float timerCount;
@@ -70,12 +72,12 @@ public class HpBarAndGrass : MonoBehaviour
         //wins/losses
         if (HP < 0)
         {
-            loss.Invoke();
+            functions.playerLost();
         }
 
         if (playerX > 9)
         {
-            win.Invoke();
+            functions.playerWon();
         }
 
 
